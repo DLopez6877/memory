@@ -4,19 +4,19 @@ var Card = require('./../js/card.js').cardModule;
 $(document).ready(function() {
   $('#memory-form').submit(function(event) {
     event.preventDefault();
-    var amount = $('.amountInput').val();
+    var amount = parseInt($('.amountInput').val());
     var newMemory = new Memory(amount);
     var output = newMemory.countCards(amount);
+    console.log(typeof amount);
     $('.cards').empty();
     output.forEach(function(i) {
       var newCard = new Card('widowmaker');
       $('.cards').append(newCard.html);
+      $('.card').last().click(function() {
+        $(this).toggleClass('flipped');
+      });
     });
   });
-});
-
-
-$(document).ready(function() {
   $('.card').click(function() {
     $(this).toggleClass('flipped');
   });
